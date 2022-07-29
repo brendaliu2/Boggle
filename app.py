@@ -21,7 +21,7 @@ def homepage():
 def new_game():
     """Start a new game and return JSON: {game_id, board}."""
 
-    # get a unique string id for the board we're creating
+    # get a unique string id for the board we're creating uuid generates randomness (codes)
     game_id = str(uuid4())
     game = BoggleGame()
     games[game_id] = game
