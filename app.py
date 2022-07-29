@@ -1,3 +1,4 @@
+from cgi import test
 from flask import Flask, request, render_template, jsonify
 from uuid import uuid4
 
@@ -27,3 +28,26 @@ def new_game():
     games[game_id] = game
 
     return {"gameId": game_id, "board": game.board}
+
+@app.post('/api/score-word')
+def score_word():
+    """Accepts post request with JSON for game id and the word"""
+
+    #get word user typed via AJAX
+    # check_word(word)
+        # if not jsonify({result: 'not word})
+    # check_word_on_board(word)
+        # if not jsonifty ({resutl: 'not-on-board'})
+    #jsonify({result:'ok'})
+
+    word = request.json['word']
+    game_id = request.json['gameId']
+
+    # result = test
+    # jsonify(result="test") another way to jsonify
+    if not games[game_id].word_list.check_word(word):
+        return jsonify({"result": 'not word'})
+    if not games[game_id].check_word_on_board(word):
+        return jsonify ({"result": 'not-on-board'})
+
+    return jsonify({"result":'ok'})
