@@ -42,8 +42,16 @@ class BoggleAppTestCase(TestCase):
             # write a test for this route
 
             resp = client.post('/api/new-game')
-            json = resp.get_data(as_text=True)
-            breakpoint()
+            json = resp.get_json()
+            # breakpoint()
 
-            self.assertEqual(resp.status_code, 200)
-            self.assertIn('Wow! I like blue, too', json)
+            """Test json[board] is equal to a list of list
+            json[gameId] is equal to a type of string
+            test that games[json[gameId]] is not None answer should be true
+
+            """
+            self.assertIsInstance(json["gameId"], str)
+            self.assertNotEqual(games[json["gameId"]], None)
+
+
+
