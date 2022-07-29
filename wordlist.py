@@ -39,7 +39,7 @@ class WordList:
 
          invoke the function check_word("PYKAFG")
          False
-        >>> wl.check_word("dog")
+        >>> wl.check_word("PYKAFG")
         False"""
 
         return word in self.words

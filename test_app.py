@@ -25,6 +25,14 @@ class BoggleAppTestCase(TestCase):
             response = client.get('/')
             ...
             # test that you're getting a template
+            #set response data to html variable
+            #assert equal to test response code 200
+            #assert in to test heading of html
+            html = response.get_data(as_text=True)
+
+            self.assertEqual(response.status_code, 200)
+            self.assertIn('comment: for testing', html)
+
 
     def test_api_new_game(self):
         """Test starting a new game."""
@@ -32,3 +40,10 @@ class BoggleAppTestCase(TestCase):
         with self.client as client:
             ...
             # write a test for this route
+
+            resp = client.post('/api/new-game')
+            json = resp.get_data(as_text=True)
+            breakpoint()
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('Wow! I like blue, too', json)
