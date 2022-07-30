@@ -53,5 +53,30 @@ class BoggleAppTestCase(TestCase):
             self.assertIsInstance(json["gameId"], str)
             self.assertNotEqual(games[json["gameId"]], None)
 
+    def test_api_score_word(self):
+        """Test the correct score for each word length."""
+        """ """
+        with self.client as client:
+            ...
 
 
+            resp = client.post('/api/new-game')
+            gameId = resp.json["gameId"]
+            game = games["gameId"]
+            game.board = [['C', 'A', 'T', 'A', 'F'], ['D', 'O', 'S', 'L', 'R'], ['H', 'K', 'S', 'E', 'F'], ['M', 'O', 'E', 'M', 'J'], ['L', 'A', 'O', 'W', 'Y']]
+            breakpoint()
+            json_response = resp.get_json()
+
+            resp = client.post('/api/score-word', json = {"gameId": gameId, "word": "CAT"})
+
+            self.assertEqual(, 1)
+            """test if the value of a passed in word equals the values below
+                word length 3 would be 1 point,
+                word length 7 would be the failing test with a score of 4
+            """
+
+            # self.assertIsInstance(json["gameId"], str)
+            # self.assertNotEqual(games[json["gameId"]], None)
+            # word_length_scores={3: 1, 4: 1, 5: 2, 6: 3, 7: 5},
+            #      max_word_length_score=11,
+            # games[game_id].word_list.check_word(word)

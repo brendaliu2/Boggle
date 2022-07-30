@@ -42,7 +42,7 @@ def score_word():
 
     word = request.json['word']
     game_id = request.json['gameId']
-
+    
     # result = test
     # jsonify(result="test") another way to jsonify
     if not games[game_id].word_list.check_word(word):
